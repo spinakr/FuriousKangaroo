@@ -1,0 +1,28 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../wine-list/wine-list.html">
+
+<dom-module id="furiousKangaroo-app">
+  <template>
+    <iron-ajax
+      auto
+      id="requestWines"
+      url="http://localhost:17211/api/wines"
+      handle-as="json"
+      last-response="{{wines}}">
+    </iron-ajax>
+    
+    <h2>Furious Kangeroo</h2>
+    
+    <wine-list wines="{{wines}}"></wine-list>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'furiousKangaroo-app',
+      propeties: {
+        wines: Array
+      }
+    });
+  </script>
+</dom-module>
