@@ -1,8 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../wine-list/wine-list.html">
+<link rel="import" href="../WebComponents/wine-list.html">
 
-<dom-module id="furiousKangaroo-app">
+<dom-module id="wine-cellar-app">
   <template>
     <iron-ajax
       auto
@@ -13,13 +13,13 @@
     </iron-ajax>
     
     <h2>Furious Kangeroo</h2>
-    
+
     <wine-list wines="{{wines}}"></wine-list>
   </template>
 
   <script>
     Polymer({
-      is: 'furiousKangaroo-app',
+      is: 'wine-cellar-app',
       propeties: {
         wines: Array
       }
