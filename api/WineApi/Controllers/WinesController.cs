@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
+using WineApi.Models;
 
 namespace WineApi.Controllers
 {
@@ -11,9 +8,9 @@ namespace WineApi.Controllers
     public class WinesController : Controller
     {
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<WineInfo> Get()
         {
-            return new string[] { "Wine1", "Wine2" };
+            return WineRepository.GetAllCurrentlyInCooler();
         }
 
         [HttpGet("{id}")]
@@ -29,11 +26,6 @@ namespace WineApi.Controllers
 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }
