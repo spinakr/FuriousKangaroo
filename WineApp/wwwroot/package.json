@@ -1,0 +1,19 @@
+{
+  "name": "winecooler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "polymer build",
+    "start": "polymer serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "polymer-cli": "^0.18.0-pre.15"
+  }
+}

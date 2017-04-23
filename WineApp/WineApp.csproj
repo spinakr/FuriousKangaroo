@@ -31,7 +31,7 @@
   
   
   <Target Name="PolymerBuild" BeforeTargets="Publish">
-    <Exec Command="polymer build" WorkingDirectory="./wwwroot" />
+    <Exec Command="npm install || npm run build" WorkingDirectory="./wwwroot" />
   </Target>
   <Target Name="PolymerPublish" AfterTargets="Publish">
     <Copy SourceFiles="@(ClientFiles)" DestinationFolder="$(PublishUrl)\wwwroot\%(RecursiveDir)" />
