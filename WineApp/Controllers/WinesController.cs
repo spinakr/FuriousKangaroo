@@ -7,10 +7,17 @@ namespace WineApi.Controllers
     [Route("api/[controller]")]
     public class WinesController : Controller
     {
+        private WineRepository _wineRepo { get; set; }
+
+        public WinesController(WineRepository repo)
+        {
+            _wineRepo = repo;
+        }
+
         [HttpGet]
         public IEnumerable<WineInfo> Get()
         {
-            return WineRepository.GetAllCurrentlyInCooler();
+            return _wineRepo.GetAllCurrentlyInCooler();
         }
 
         [HttpGet("{id}")]

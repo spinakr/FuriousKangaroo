@@ -28,6 +28,7 @@ namespace WineApi
         {
             services.AddMvc();
             services.AddCors();
+            services.AddSingleton<WineRepository, WineRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
