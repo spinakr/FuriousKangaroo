@@ -39,12 +39,6 @@ namespace WineApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder =>
-            {
-                builder.WithOrigins("http://localhost:8081")
-                       .WithMethods("GET", "POST")
-                       .AllowAnyHeader();
-            });
             app.UseMvc();
             app.UseDefaultFiles();
             app.UseStaticFiles();

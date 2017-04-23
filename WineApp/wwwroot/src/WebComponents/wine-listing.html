@@ -1,0 +1,16 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="wine-listing">
+  <template>
+    <li>[[wine.name]]</li>
+  </template>
+  
+  <script>
+    Polymer({
+      is: 'wine-listing',
+      propeties: {
+        wine: Object
+      }
+    });
+  </script>
+</dom-module>

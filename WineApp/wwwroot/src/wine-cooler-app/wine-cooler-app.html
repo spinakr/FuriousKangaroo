@@ -1,0 +1,28 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../WebComponents/wine-list.html">
+
+<dom-module id="wine-cooler-app">
+  <template>
+    <iron-ajax
+      auto
+      id="requestWines"
+      url="/api/wines"
+      handle-as="json"
+      last-response="{{_wines}}">
+    </iron-ajax>
+    
+    <h2>Furious Kangeroo</h2>
+
+    <wine-list wines="{{_wines}}"></wine-list>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'wine-cooler-app',
+      propeties: {
+        _wines: Array
+      }
+    });
+  </script>
+</dom-module>

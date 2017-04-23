@@ -1,9 +1,0 @@
-C:\code\FuriousKangaroo\api\WineApi\bin\Debug\netcoreapp1.1\WineApi.deps.json
-C:\code\FuriousKangaroo\api\WineApi\bin\Debug\netcoreapp1.1\WineApi.runtimeconfig.json
-C:\code\FuriousKangaroo\api\WineApi\bin\Debug\netcoreapp1.1\WineApi.runtimeconfig.dev.json
-C:\code\FuriousKangaroo\api\WineApi\bin\Debug\netcoreapp1.1\WineApi.dll
-C:\code\FuriousKangaroo\api\WineApi\bin\Debug\netcoreapp1.1\WineApi.pdb
-C:\code\FuriousKangaroo\api\WineApi\obj\Debug\netcoreapp1.1\WineApi.csprojResolveAssemblyReference.cache
-C:\code\FuriousKangaroo\api\WineApi\obj\Debug\netcoreapp1.1\WineApi.AssemblyInfo.cs
-C:\code\FuriousKangaroo\api\WineApi\obj\Debug\netcoreapp1.1\WineApi.dll
-C:\code\FuriousKangaroo\api\WineApi\obj\Debug\netcoreapp1.1\WineApi.pdb

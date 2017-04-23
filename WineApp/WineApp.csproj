@@ -6,8 +6,10 @@
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
   </PropertyGroup>
 
+  
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Content Update="wwwroot\**\*" CopyToPublishDirectory="Never" />
+    <ClientFiles Include="wwwroot\build\default\**\*" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
@@ -25,4 +27,13 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
+  
+  
+  <Target Name="PolymerBuild" BeforeTargets="Publish">
+    <Exec Command="polymer build" WorkingDirectory="./wwwroot" />
+  </Target>
+  <Target Name="PolymerPublish" AfterTargets="Publish">
+    <Copy SourceFiles="@(ClientFiles)" DestinationFolder="$(PublishUrl)\wwwroot\%(RecursiveDir)" />
+  </Target>
+
 </Project>

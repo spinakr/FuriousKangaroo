@@ -1,0 +1,23 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="wine-listing.html">
+
+<dom-module id="wine-list">
+  <template>
+    <ul>
+      <template is="dom-repeat" items="[[wines]]">
+        <ul>
+          <wine-listing wine="[[item]]"></wine-listing>
+        </ul>
+      </template>
+    </ul>
+  </template>
+  
+  <script>
+    Polymer({
+      is: 'wine-list',
+      propeties: {
+        wines: Array
+      }
+    });
+  </script>
+</dom-module>
