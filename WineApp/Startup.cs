@@ -37,9 +37,9 @@ namespace WineApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseMvc();
         }
     }
 }
