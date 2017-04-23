@@ -30,11 +30,11 @@
   </ItemGroup>
   
   
-  <Target Name="PolymerBuild" BeforeTargets="Publish">
+  <!--<Target Name="PolymerBuild" BeforeTargets="Publish">
     <Exec Command="npm install || npm run build" WorkingDirectory="./wwwroot" />
   </Target>
   <Target Name="PolymerPublish" AfterTargets="Publish">
     <Copy SourceFiles="@(ClientFiles)" DestinationFolder="$(PublishUrl)\wwwroot\%(RecursiveDir)" />
-  </Target>
+  </Target>-->
 
 </Project>
