@@ -1,39 +1,41 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WineApi.Models;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Extensions.Options;
+using WineApp;
 
 namespace WineApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/wines")]
     public class WinesController : Controller
     {
-        private WineRepository _wineRepo { get; set; }
-
-        public WinesController(WineRepository repo)
+        public CloudTable WineTable { get; private set; }
+        public WinesController(IOptions<AppSettings> optionsAccessor)
         {
-            _wineRepo = repo;
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(optionsAccessor.Value.StorageConnectionString);
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            WineTable = tableClient.GetTableReference("wines");
+            WineTable.CreateIfNotExistsAsync();
         }
 
         [HttpGet]
         public IEnumerable<WineInfo> Get()
         {
-            return _wineRepo.GetAllCurrentlyInCooler();
+            return WineTable.ExecuteQuerySegmentedAsync(new TableQuery<WineInfo>(), new TableContinuationToken()).Result;
         }
 
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{country}")]
+        public IEnumerable<WineInfo> Get(string country)
         {
-            return "value";
+            return WineTable.ExecuteQuerySegmentedAsync(new TableQuery<WineInfo>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country)), new TableContinuationToken()).Result;
         }
 
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]WineInfo wine)
         {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
+            WineTable.ExecuteAsync(TableOperation.Insert(wine));
         }
     }
 }
