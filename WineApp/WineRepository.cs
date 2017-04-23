@@ -12,7 +12,7 @@ namespace WineApp
     {
         IEnumerable<WineInfo> GetAllInStock();
         IEnumerable<WineInfo> GetAllInStock(string country);
-        void Insert(WineInfo wine);
+        string Insert(WineInfo wine);
 
     }
 
@@ -37,9 +37,12 @@ namespace WineApp
             return WineTable.ExecuteQuerySegmentedAsync(new TableQuery<WineInfo>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country)), new TableContinuationToken()).Result;
         }
 
-        public void Insert(WineInfo wine)
+        public string Insert(WineInfo wine)
         {
+            var guid =  Guid.NewGuid().ToString();
+            wine.RowKey = guid;
             WineTable.ExecuteAsync(TableOperation.Insert(wine));
+            return guid;
         }
     }
 }

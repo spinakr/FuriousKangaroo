@@ -6,11 +6,10 @@ namespace WineApi.Models
     public class WineInfo : TableEntity
     {
         public WineInfo(){}
-        public WineInfo(string country, string name)
+        public WineInfo(string country, string id)
         {
             PartitionKey = country;
-            RowKey = name;
-            Name = name;
+            RowKey = id;
             Country = country;
         }
 

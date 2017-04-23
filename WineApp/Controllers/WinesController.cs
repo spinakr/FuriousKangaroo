@@ -30,9 +30,9 @@ namespace WineApi.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]WineInfo wine)
+        public string Post([FromBody]WineInfo wine)
         {
-            _wineRepo.Insert(wine);
+            return _wineRepo.Insert(wine);
         }
     }
 }
