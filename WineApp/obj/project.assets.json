@@ -10773,10 +10773,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\FuriousKangaroo\\api\\WineApi\\WineApi.csproj",
-      "projectName": "WineApi",
-      "projectPath": "C:\\code\\FuriousKangaroo\\api\\WineApi\\WineApi.csproj",
-      "outputPath": "C:\\code\\FuriousKangaroo\\api\\WineApi\\obj\\",
+      "projectUniqueName": "C:\\code\\FuriousKangaroo\\WineApp\\WineApp.csproj",
+      "projectName": "WineApp",
+      "projectPath": "C:\\code\\FuriousKangaroo\\WineApp\\WineApp.csproj",
+      "outputPath": "C:\\code\\FuriousKangaroo\\WineApp\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
