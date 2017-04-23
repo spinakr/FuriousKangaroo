@@ -11,31 +11,28 @@ namespace WineApi.Controllers
     [Route("api/wines")]
     public class WinesController : Controller
     {
-        public CloudTable WineTable { get; private set; }
-        public WinesController(IOptions<AppSettings> optionsAccessor)
+        private IWineRepository _wineRepo{ get; set; }
+        public WinesController(IWineRepository wineRepo)
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(optionsAccessor.Value.StorageConnectionString);
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            WineTable = tableClient.GetTableReference("wines");
-            WineTable.CreateIfNotExistsAsync();
+            _wineRepo = wineRepo;
         }
 
         [HttpGet]
         public IEnumerable<WineInfo> Get()
         {
-            return WineTable.ExecuteQuerySegmentedAsync(new TableQuery<WineInfo>(), new TableContinuationToken()).Result;
+            return _wineRepo.GetAllInStock();
         }
 
         [HttpGet("{country}")]
         public IEnumerable<WineInfo> Get(string country)
         {
-            return WineTable.ExecuteQuerySegmentedAsync(new TableQuery<WineInfo>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country)), new TableContinuationToken()).Result;
+            return _wineRepo.GetAllInStock(country);
         }
 
         [HttpPost]
         public void Post([FromBody]WineInfo wine)
         {
-            WineTable.ExecuteAsync(TableOperation.Insert(wine));
+            _wineRepo.Insert(wine);
         }
     }
 }

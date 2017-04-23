@@ -26,6 +26,7 @@ namespace WineApi
             services.AddMvc();
             services.AddCors();
             services.Configure<AppSettings>(Configuration);
+            services.AddTransient<IWineRepository>(provider => new WineRepository(Configuration.GetConnectionString("StorageConnectionString")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
