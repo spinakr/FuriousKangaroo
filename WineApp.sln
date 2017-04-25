@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineApp", "WineApp\WineApp.csproj", "{4814077D-1A7B-419F-A87C-A671264187DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineImporter", "WineImporter\WineImporter.csproj", "{DE657619-9CD2-41E2-B943-83775F8D08EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4814077D-1A7B-419F-A87C-A671264187DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4814077D-1A7B-419F-A87C-A671264187DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4814077D-1A7B-419F-A87C-A671264187DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE657619-9CD2-41E2-B943-83775F8D08EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE657619-9CD2-41E2-B943-83775F8D08EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE657619-9CD2-41E2-B943-83775F8D08EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE657619-9CD2-41E2-B943-83775F8D08EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
