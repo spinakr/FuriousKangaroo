@@ -1,28 +1,19 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../WebComponents/wine-list.html">
+<link rel="import" href="../WebComponents/wine-cooler-view.html">
 
 <dom-module id="wine-cooler-app">
   <template>
-    <iron-ajax
-      auto
-      id="requestWines"
-      url="/api/wines"
-      handle-as="json"
-      last-response="{{_wines}}">
-    </iron-ajax>
-    
-    <h2>Wine Cooler</h2>
-
-    <wine-list wines="{{_wines}}"></wine-list>
+    <wine-cooler-view></wine-cooler-view>
   </template>
 
   <script>
-    Polymer({
-      is: 'wine-cooler-app',
-      propeties: {
-        _wines: Array
-      }
-    });
+    class WineCoolerApp extends Polymer.Element {
+      static get is() { return "wine-cooler-app"; }
+        constructor() {
+          super();
+          this.textContent = "I'm a custom-element.";
+        }
+    }
+    customElements.define(WineCoolerApp.is, WineCoolerApp);
   </script>
 </dom-module>

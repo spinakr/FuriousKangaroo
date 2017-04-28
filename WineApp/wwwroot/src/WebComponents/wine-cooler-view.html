@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../WebComponents/wine-list.html">
+<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+
+<dom-module id="wine-cooler-view">
+  <template>
+    <iron-ajax
+      auto
+      id="requestWines"
+      url="/api/wines"
+      handle-as="json"
+      last-response="{{_wines}}">
+    </iron-ajax>
+    
+    <div class="container">
+      <h2>Wine Cooler</h2>
+
+      <wine-list wines="{{_wines}}"></wine-list>
+    </div>
+  </template>
+
+  <script>
+    class WineCoolerView extends Polymer.Element {
+      static get is() { return "wine-cooler-view"; }
+      static get propeties(){
+        return {
+          _wines: Array
+        }
+      }
+    }
+    customElements.define(WineCoolerView.is, WineCoolerView);
+  </script>
+</dom-module>

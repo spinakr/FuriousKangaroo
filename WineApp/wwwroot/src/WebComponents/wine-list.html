@@ -13,11 +13,14 @@
   </template>
   
   <script>
-    Polymer({
-      is: 'wine-list',
-      propeties: {
-        wines: Array
+    class WineList extends Polymer.Element {
+      static get is() { return "wine-list"; }
+      static get propeties(){
+        return {
+          wines: Array
+        }
       }
-    });
+    }
+    customElements.define(WineList.is, WineList);
   </script>
 </dom-module>

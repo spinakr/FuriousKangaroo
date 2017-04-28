@@ -6,11 +6,14 @@
   </template>
   
   <script>
-    Polymer({
-      is: 'wine-listing',
-      propeties: {
-        wine: Object
+    class WineListing extends Polymer.Element {
+      static get is() { return "wine-listing"; }
+      static get propeties(){
+        return {
+          wine: Object
+        }
       }
-    });
+    }
+    customElements.define(WineListing.is, WineListing);
   </script>
 </dom-module>
