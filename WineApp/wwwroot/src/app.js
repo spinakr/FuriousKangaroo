@@ -9,7 +9,7 @@ const App = () => {
   };
   return (
     <div style={style}>
-      <h1>Wine Cooler!</h1>
+      <h1>Wine Cooler!!!</h1>
     </div>
   );
 };

@@ -1,13 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
-
-
+const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPluginConfigDev = new HtmlWebpackPlugin({
-  template: './src/index.ejs',
-  filename: '../index.html',
-  inject: 'body'
-})
 
 module.exports = {
   entry: './src/index.js',
@@ -27,8 +20,12 @@ module.exports = {
     port: 17212,
   },
   plugins: [
-    HtmlWebpackPluginConfigDev,
-    new webpack.DefinePlugin({
+    new HtmlWebpackPlugin({
+      template: './src/index.ejs',
+      filename: '../index.html',
+      inject: 'body'
+    }),
+    new Webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
