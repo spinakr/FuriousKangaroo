@@ -8,9 +8,11 @@ namespace WineApi
     {
         public static void Main(string[] args)
         {
+            var contentRoot = Directory.GetCurrentDirectory();
+            System.Console.WriteLine("Content root:   " + contentRoot);
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseContentRoot(contentRoot)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
