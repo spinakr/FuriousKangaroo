@@ -1,21 +1,32 @@
 import 'whatwg-fetch'; // Native fetch polyfill
-import React from 'react';
-import WineListContainer from './containers/wineListContainer';
+import React, { Component } from 'react';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import AppLayoutComponent from './components/appLayoutComponent';
+import winesModule, { fetchWines } from './modules/winesModule';
 
-const style = {
-  border: 'solid',
-  margin: 'auto',
-  width: '90%',
-  textAlign: 'center',
-};
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
 
-const App = () => {
-  return (
-    <div style={style}>
-      <h1>Wine Cooler</h1>
-      <WineListContainer />
-    </div>
-  );
-};
+const store = createStore(
+  winesModule,
+  composeEnhancers(applyMiddleware(thunk)),
+);
+
+class App extends Component {
+  componentDidMount() {
+    store.dispatch(fetchWines());
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <AppLayoutComponent />
+      </Provider>
+    );
+  }
+}
 
 export default App;

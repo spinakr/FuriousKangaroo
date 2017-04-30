@@ -10,16 +10,25 @@ module.exports = {
     path: path.resolve('./dist/'),
     publicPath: 'http://localhost:17212/dist/',
   },
+
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-    ]
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          plugins: ['transform-object-rest-spread'],
+        },
+      },
+    ],
   },
+
   devServer: {
     inline: true,
     port: 17212,
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
@@ -33,4 +42,5 @@ module.exports = {
       fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
     }),
   ],
+
 };

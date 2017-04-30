@@ -9,12 +9,20 @@ module.exports = {
     path: path.resolve('./dist/'),
     publicPath: 'app/dist/',
   },
+
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-    ]
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          plugins: ['transform-object-rest-spread'],
+        },
+      },
+    ],
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -25,4 +33,5 @@ module.exports = {
       fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
     }),
   ],
+
 };
