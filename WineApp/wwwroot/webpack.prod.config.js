@@ -7,7 +7,6 @@ module.exports = {
   output: {
     filename: 'index_bundle.js',
     path: path.resolve('./dist/'),
-    publicPath: 'app/dist/',
   },
 
   module: {
@@ -25,7 +24,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/index.ejs',
       filename: 'index.html',
       inject: 'body',
     }),
