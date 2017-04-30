@@ -7,19 +7,22 @@ module.exports = {
   output: {
     filename: 'index_bundle.js',
     path: path.resolve('./dist/'),
-    publicPath: 'app/dist/'
+    publicPath: 'app/dist/',
   },
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      inject: 'body'
-    })
-  ]
-}
+      inject: 'body',
+    }),
+    new Webpack.ProvidePlugin({
+      fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+    }),
+  ],
+};
