@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import WineListComponent from '../components/wineListComponent';
 
 const WineArchiveContainer = ({ wineArchive }) => {
-  console.log(wineArchive);
   return (
     <div>
       <WineListComponent wines={wineArchive} />
