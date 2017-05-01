@@ -4,7 +4,7 @@ import Winecomponent from './wineComponent';
 
 const WineListComponent = ({ wines }) => {
   return (
-    <div className="card-columns">
+    <div className="">
       {wines.map((wine, index) => {
         return <Winecomponent wine={wine} key={index} />;
       })}

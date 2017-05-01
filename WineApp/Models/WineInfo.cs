@@ -23,6 +23,6 @@ namespace WineApp.Models
         public string Occation { get; set; }
         public bool Storage { get;  set; }
         public string BoughtDate { get; set; }
-        public string VinmonopoletUrl { get; internal set; }
+        public string VinmonopoletUrl { get; set; }
     }
 }
