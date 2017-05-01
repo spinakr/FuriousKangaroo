@@ -1,11 +1,8 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WineApi.Models;
 
 namespace WineImporter
@@ -24,6 +21,10 @@ namespace WineImporter
 
             ImportFromFile(wineTable, fileReader, "instock");
             ImportFromFile(wineTable, fileReader2, "archive");
+
+            var wineRepo = File.ReadAllLines(@"../import/produkter.csv").Skip(1)
+                .Select(x => x.Split(';'))
+                .ToDictionary(x => x[1], x => x);
         }
 
         private static void ImportFromFile(CloudTable wineTable, string[] fileReader, string status)

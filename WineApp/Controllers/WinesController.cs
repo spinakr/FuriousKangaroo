@@ -10,9 +10,11 @@ namespace WineApi.Controllers
     public class WinesController : Controller
     {
         private IWineRepository _wineRepo { get; set; }
-        public WinesController(IWineRepository wineRepo)
+        private VinmonopoletService _vinmonopoletService { get; set; }
+        public WinesController(IWineRepository wineRepo, VinmonopoletService vinmonopoletService)
         {
             _wineRepo = wineRepo;
+            _vinmonopoletService = vinmonopoletService;
         }
 
         [HttpGet]
@@ -46,9 +48,10 @@ namespace WineApi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody]WineInfo wine)
+        public string Post([FromBody]string vinmonopoletId)
         {
-            return _wineRepo.Insert(wine);
+            var wineInfo = _vinmonopoletService.GetInfo(vinmonopoletId);
+            return _wineRepo.Insert(wineInfo);
         }
     }
 }

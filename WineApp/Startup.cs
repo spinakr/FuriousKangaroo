@@ -27,6 +27,7 @@ namespace WineApi
             services.AddCors();
             services.Configure<AppSettings>(Configuration);
             services.AddTransient<IWineRepository>(provider => new WineRepository(Configuration.GetConnectionString("StorageConnectionString")));
+            services.AddSingleton(new VinmonopoletService());
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
