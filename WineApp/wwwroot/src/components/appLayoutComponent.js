@@ -10,11 +10,7 @@ class AppLayoutComponent extends Component {
       <div className="container">
         <HashRouter>
           <div>
-            <div className="page-header">
-              <h1>Wine Cooler <small>current wine inventory</small></h1>
-              <Route path="/" component={NavComponent} />
-            </div>
-
+            <Route path="/" component={NavComponent} />
             <Route path="/inventory" component={WinesInStockContainer} />
             <Route path="/archive" component={WineArchiveContainer} />
           </div>

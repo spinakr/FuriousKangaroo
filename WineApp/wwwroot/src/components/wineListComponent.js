@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GridComponent from './gridComponent';
+import Winecomponent from './wineComponent';
 
 const WineListComponent = ({ wines }) => {
   return (
     <GridComponent columns="3">
-      {wines.map((wine) => {
-        return (
-          <span key={wine.info.rowKey}>
-            {wine.info.name} - {wine.ids.length}
-          </span>
-        );
+      {wines.map((wine, index) => {
+        return <Winecomponent wine={wine} key={index} />;
       })}
     </GridComponent>
   );
