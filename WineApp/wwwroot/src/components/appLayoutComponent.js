@@ -7,7 +7,7 @@ import NavComponent from './navComponent';
 class AppLayoutComponent extends Component {
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <HashRouter>
           <div>
             <Route path="/" component={NavComponent} />

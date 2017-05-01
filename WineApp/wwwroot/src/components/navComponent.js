@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const NavComponent = ({ location }) => {
   return (
-    <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav className="navbar stixy-top navbar-toggleable-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon" />
       </button>
