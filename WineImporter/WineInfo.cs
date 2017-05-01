@@ -5,7 +5,7 @@ namespace WineApi.Models
 {
     public class WineInfo : TableEntity
     {
-        public WineInfo(){}
+        public WineInfo() { }
         public WineInfo(string status, string id)
         {
             PartitionKey = status;
@@ -24,5 +24,6 @@ namespace WineApi.Models
         public string Occation { get; set; }
         public bool Storage { get; set; }
         public string BoughtDate { get; set; }
+        public string VinmonopoletUrl { get; set; }
     }
 }
