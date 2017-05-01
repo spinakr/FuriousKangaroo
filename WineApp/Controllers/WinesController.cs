@@ -1,32 +1,48 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WineApi.Models;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
-using Microsoft.Extensions.Options;
 using WineApp;
+using System.Linq;
+using WineApp.Models;
 
 namespace WineApi.Controllers
 {
     [Route("api/wines")]
     public class WinesController : Controller
     {
-        private IWineRepository _wineRepo{ get; set; }
+        private IWineRepository _wineRepo { get; set; }
         public WinesController(IWineRepository wineRepo)
         {
             _wineRepo = wineRepo;
         }
 
         [HttpGet]
-        public IEnumerable<WineInfo> Get()
+        public WineResponse Get()
         {
-            return _wineRepo.GetAllInStock();
-        }
+            var wines = _wineRepo.GetAllInStock();
+            var inStock = wines.Where(w => w.PartitionKey == "instock");
+            var archive = wines.Where(w => w.PartitionKey == "archive");
 
-        [HttpGet("{country}")]
-        public IEnumerable<WineInfo> Get(string country)
-        {
-            return _wineRepo.GetAllInStock(country);
+            var inStockGrouped = inStock
+                .GroupBy(w => w.Name)
+                .Select(g => new WineGroup
+                {
+                    Info = g.First(),
+                    Ids = g.Select(x => x.RowKey)
+                });
+            var archiveGrouped = archive
+                .GroupBy(w => w.Name)
+                .Select(g => new WineGroup
+                {
+                    Info = g.First(),
+                    Ids = g.Select(x => x.RowKey)
+                });
+
+
+            return new WineResponse
+            {
+                InStock = inStockGrouped,
+                Archived = archiveGrouped
+            };
         }
 
         [HttpPost]

@@ -17,6 +17,7 @@ namespace WineImporter
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse("UseDevelopmentStorage=true;");
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             var wineTable = tableClient.GetTableReference("wines");
+            wineTable.DeleteIfExists();
             wineTable.CreateIfNotExistsAsync();
             var fileReader = File.ReadAllLines(@"../../../import/in-cooler.csv");
             var fileReader2 = File.ReadAllLines(@"../../../import/was-in-cooler.csv");
@@ -41,7 +42,7 @@ namespace WineImporter
                     Vintage = columns[3],
                     Area = columns[5],
                     Price = columns[6],
-                    Occation = columns[7],
+                    Occation = columns[7] == "Lagring" ? "" : columns[7],
                     Storage = columns[7] == "Lagring" ? true : false,
                     BoughtDate = columns[8],
                     Fruit = columns[9]

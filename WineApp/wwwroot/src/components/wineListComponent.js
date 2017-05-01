@@ -6,7 +6,9 @@ const WineListComponent = ({ wines }) => {
     <div>
       {wines.map((wine, index) => {
         return (
-          <p key={index}> {wine.name} </p>
+          <div key={index}>
+            {wine.info.name} - {wine.ids.length}
+          </div>
         );
       })}
     </div>

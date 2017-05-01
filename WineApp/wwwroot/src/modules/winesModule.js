@@ -25,12 +25,8 @@ export default (state = initialState, action) => {
       const wines = JSON.parse(action.payload.wines);
       return {
         ...state,
-        winesInStock: wines.filter((wine) => {
-          return wine.partitionKey === 'instock';
-        }),
-        wineArchive: wines.filter((wine) => {
-          return wine.partitionKey === 'archive';
-        }),
+        winesInStock: wines.inStock,
+        wineArchive: wines.archived,
       };
     }
 

@@ -2,9 +2,7 @@
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WineApi.Models;
+using WineApp.Models;
 
 namespace WineApp
 {
