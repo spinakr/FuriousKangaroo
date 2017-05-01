@@ -26,14 +26,17 @@ const NavComponent = ({ location }) => {
       </nav>
       <nav className="navbar fixed-bottom navbar-light" >
         <div className="btn-group" data-toggle="buttons" style={{ float: 'none', display: 'inline-block', textAlign: 'center' }}>
-          <label className="btn btn-outline-danger active">
-            <input type="checkbox" name="options" id="option1" autoComplete="off" />Rød
+          <label className="btn btn-outline-info active">
+            <input type="radio" name="options" id="option1" autoComplete="off" />*
           </label>
-          <label className="btn btn-outline-secondary active">
-            <input type="checkbox" name="options" id="option2" autoComplete="off" />Hvit
+          <label className="btn btn-outline-danger">
+            <input type="radio" name="options" id="option2" autoComplete="off" />Rød
           </label>
-          <label className="btn btn-outline-warning active">
-            <input type="checkbox" name="options" id="option3" autoComplete="off" />Muserende
+          <label className="btn btn-outline-secondary">
+            <input type="radio" name="options" id="option3" autoComplete="off" />Hvit
+          </label>
+          <label className="btn btn-outline-warning">
+            <input type="radio" name="options" id="option4" autoComplete="off" />Muserende
           </label>
         </div>
       </nav>
