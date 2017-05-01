@@ -5,16 +5,23 @@ import PropTypes from 'prop-types';
 
 const NavComponent = ({ location }) => {
   return (
-    <nav className="navbar navbar-light bg-faded">
+    <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon" />
+      </button>
+
       <a className="navbar-brand" href="/">Wine Cooler</a>
-      <ul className="navbar-nav">
-        <li role="presentation" className={location.pathname === '/inventory' ? 'nav-item active' : 'nav-item'}>
-          <Link to="/inventory" className="nav-link">Inventory</Link>
-        </li>
-        <li role="presentation" className={location.pathname === '/archive' ? 'nav-item active' : 'nav-item'}>
-          <Link to="/archive" className="nav-link">Archive</Link>
-        </li>
-      </ul>
+
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li role="presentation" className={location.pathname === '/inventory' ? 'nav-item active' : 'nav-item'}>
+            <Link to="/inventory" className="nav-link">Inventory</Link>
+          </li>
+          <li role="presentation" className={location.pathname === '/archive' ? 'nav-item active' : 'nav-item'}>
+            <Link to="/archive" className="nav-link">Archive</Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };

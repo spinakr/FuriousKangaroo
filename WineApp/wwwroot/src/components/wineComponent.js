@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const WineComponent = ({ wine }) => {
-  const clickable = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-  };
   const info = wine.info;
   return (
     <div
