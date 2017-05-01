@@ -8,7 +8,7 @@ const WineComponent = ({ wine }) => {
         <h3 className="card-title">{wine.info.name} </h3>
         <p className="card-text">Count: {wine.ids.length}</p>
         <button
-          className="btn btn-primary"
+          className="btn btn-info"
           type="button"
           data-toggle="collapse"
           data-target={`#infoSection-${wine.info.rowKey}`}
