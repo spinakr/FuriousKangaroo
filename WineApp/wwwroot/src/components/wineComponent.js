@@ -13,7 +13,7 @@ const WineComponent = ({ wine }) => {
         aria-expanded="false"
         aria-controls={`infoSection-${info.rowKey}`} key={info.rowKey}
       >
-        <h3 className="card-title">{info.name} {wine.ids.length === 1 ? '' : `(${wine.ids.length})`} </h3>
+        <h5 className="card-title">{info.name} {wine.ids.length === 1 ? '' : `(${wine.ids.length})`} </h5>
 
       </div>
 
