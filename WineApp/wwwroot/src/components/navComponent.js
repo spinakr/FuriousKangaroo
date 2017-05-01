@@ -5,24 +5,39 @@ import PropTypes from 'prop-types';
 
 const NavComponent = ({ location }) => {
   return (
-    <nav className="navbar stixy-top navbar-toggleable-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
-      <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon" />
-      </button>
+    <div>
+      <nav className="navbar stixy-top navbar-toggleable-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
+        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
+        </button>
 
-      <a className="navbar-brand" href="/">Wine Cooler</a>
+        <h1 className="navbar-brand mb-0">Wine Cooler</h1>
 
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li role="presentation" className={location.pathname === '/inventory' ? 'nav-item active' : 'nav-item'}>
-            <Link to="/inventory" className="nav-link">Inventory</Link>
-          </li>
-          <li role="presentation" className={location.pathname === '/archive' ? 'nav-item active' : 'nav-item'}>
-            <Link to="/archive" className="nav-link">Archive</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li role="presentation" className={location.pathname === '/inventory' ? 'nav-item active' : 'nav-item'}>
+              <Link to="/inventory" className="nav-link">Inventory</Link>
+            </li>
+            <li role="presentation" className={location.pathname === '/archive' ? 'nav-item active' : 'nav-item'}>
+              <Link to="/archive" className="nav-link">Archive</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <nav className="navbar fixed-bottom navbar-light" >
+        <div className="btn-group" data-toggle="buttons" style={{ float: 'none', display: 'inline-block', textAlign: 'center' }}>
+          <label className="btn btn-outline-danger active">
+            <input type="checkbox" name="options" id="option1" autoComplete="off" />Rød
+          </label>
+          <label className="btn btn-outline-secondary active">
+            <input type="checkbox" name="options" id="option2" autoComplete="off" />Hvit
+          </label>
+          <label className="btn btn-outline-warning active">
+            <input type="checkbox" name="options" id="option3" autoComplete="off" />Muserende
+          </label>
+        </div>
+      </nav>
+    </div>
   );
 };
 
