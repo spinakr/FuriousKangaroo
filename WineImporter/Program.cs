@@ -59,8 +59,6 @@ namespace WineImporter
                     var wineInfo = wineRepo[vinmonopoletId];
                     wine = new WineInfo(status, guid)
                     {
-                        RowKey = Guid.NewGuid().ToString(),
-                        PartitionKey = "instock",
                         VinmonopoletId = vinmonopoletId,
                         Name = wineInfo[2],
                         Price = wineInfo[4],
