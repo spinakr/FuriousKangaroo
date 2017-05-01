@@ -2,22 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const WineComponent = ({ wine }) => {
+  const clickable = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+  };
   const info = wine.info;
   return (
-    <div className="card" key={info.rowKey}>
+    <div
+      className="card"
+      style={{ cursor: 'pointer' }}
+      data-toggle="collapse"
+      data-target={`#infoSection-${info.rowKey}`}
+      aria-expanded="false"
+      aria-controls={`infoSection-${info.rowKey}`} key={info.rowKey}
+    >
       <div className="card-block">
         <h3 className="card-title">{info.name} {wine.ids.length === 1 ? '' : `(${wine.ids.length})`} </h3>
-        <button
-          className="btn btn-info"
-          type="button"
-          data-toggle="collapse"
-          data-target={`#infoSection-${info.rowKey}`}
-          aria-expanded="false"
-          aria-controls={`infoSection-${info.rowKey}`}
-        >
-          Info
-        </button>
-
         <div className="collapse" id={`infoSection-${info.rowKey}`}>
           <div className="card card-block">
             <ul>
