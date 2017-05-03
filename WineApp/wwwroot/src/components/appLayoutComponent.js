@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import WinesInStockContainer from '../containers/winesInStockContainer';
 import WineArchiveContainer from '../containers/wineArchiveContainer';
-import NavComponent from './navComponent';
+import NavContainer from './navContainer';
 
 class AppLayoutComponent extends Component {
   render() {
@@ -10,7 +10,7 @@ class AppLayoutComponent extends Component {
       <div className="container">
         <HashRouter>
           <div>
-            <Route path="/" component={NavComponent} />
+            <Route path="/" component={NavContainer} />
             <Route path="/inventory" component={WinesInStockContainer} />
             <Route path="/archive" component={WineArchiveContainer} />
           </div>

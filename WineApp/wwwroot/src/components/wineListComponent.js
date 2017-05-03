@@ -6,7 +6,7 @@ const WineListComponent = ({ wines }) => {
   return (
     <div className="">
       {wines.map((wine, index) => {
-        return <Winecomponent wine={wine} key={index} />;
+        return wine.isHidden === false ? <Winecomponent wine={wine} key={index} /> : '';
       })}
     </div>
   );

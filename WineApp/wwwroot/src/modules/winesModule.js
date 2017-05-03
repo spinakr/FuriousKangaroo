@@ -3,6 +3,8 @@ import getWines from '../services/wineCoolerService';
 export const GET_WINES_STARTED = 'score/GET_WINES_STARTED';
 export const GET_WINES_SUCCEED = 'score/GET_WINES_SUCCEED';
 export const GET_WINES_FAILED = 'score/GET_WINES_FAILED';
+export const FILTER_WINES = 'score/FILTER_WINES';
+export const RESET_FILTER = 'score/RESET_FILTER';
 
 
 const initialState = {
@@ -11,8 +13,55 @@ const initialState = {
   isGettingWines: false,
 };
 
+const shouldBeHidden = (wineType, filterType) => {
+  if (filterType === 'Muserende') {
+    return !(wineType.includes('Champ') ||
+             wineType.includes('Perl') ||
+             wineType.includes('Cava') ||
+             wineType.includes('Crem') ||
+             wineType.includes('Musser'));
+  }
+  return !wineType.includes(filterType);
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case RESET_FILTER: {
+      return {
+        ...state,
+        winesInStock: state.winesInStock.map((wine) => {
+          return {
+            ...wine,
+            isHidden: false,
+          };
+        }),
+        wineArchive: state.wineArchive.map((wine) => {
+          return {
+            ...wine,
+            isHidden: false,
+          };
+        }),
+      };
+    }
+
+    case FILTER_WINES: {
+      return {
+        ...state,
+        winesInStock: state.winesInStock.map((wine) => {
+          return {
+            ...wine,
+            isHidden: !wine.info.type.includes(action.payload),
+          };
+        }),
+        wineArchive: state.wineArchive.map((wine) => {
+          return {
+            ...wine,
+            isHidden: shouldBeHidden(wine.info.type, action.payload),
+          };
+        }),
+      };
+    }
 
     case GET_WINES_STARTED: {
       return {
@@ -25,8 +74,8 @@ export default (state = initialState, action) => {
       const wines = JSON.parse(action.payload.wines);
       return {
         ...state,
-        winesInStock: wines.inStock,
-        wineArchive: wines.archived,
+        winesInStock: wines.inStock.map((wine) => { return { ...wine, isHidden: false }; }),
+        wineArchive: wines.archived.map((wine) => { return { ...wine, isHidden: false }; }),
       };
     }
 
@@ -51,3 +100,9 @@ export const fetchWines = () => (dispatch) => {
   });
 };
 
+export const setNewFilter = (type) => {
+  if (type === '*') {
+    return { type: RESET_FILTER, payload: type };
+  }
+  return { type: FILTER_WINES, payload: type };
+};

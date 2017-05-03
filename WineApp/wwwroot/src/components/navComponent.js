@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const NavComponent = ({ location }) => {
+const NavComponent = ({ location, filterChanged }) => {
   return (
     <div>
       <nav className="navbar stixy-top navbar-toggleable-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
@@ -25,18 +25,18 @@ const NavComponent = ({ location }) => {
         </div>
       </nav>
       <nav className="navbar fixed-bottom navbar-light" >
-        <div className="btn-group" data-toggle="buttons" style={{ float: 'none', display: 'inline-block', textAlign: 'center' }}>
+        <div className="btn-group" style={{ float: 'none', display: 'inline-block', textAlign: 'center' }}>
           <label className="btn btn-outline-info active">
-            <input type="radio" name="options" id="option1" autoComplete="off" />*
+            <input type="radio" name="options" id="*" onChange={() => filterChanged('*')} />*
           </label>
           <label className="btn btn-outline-danger">
-            <input type="radio" name="options" id="option2" autoComplete="off" />Rød
+            <input type="radio" name="options" id="Rød" onChange={() => filterChanged('Rød')} />Rød
           </label>
           <label className="btn btn-outline-secondary">
-            <input type="radio" name="options" id="option3" autoComplete="off" />Hvit
+            <input type="radio" name="options" id="Hvit" onChange={() => filterChanged('Hvit')} />Hvit
           </label>
           <label className="btn btn-outline-warning">
-            <input type="radio" name="options" id="option4" autoComplete="off" />Muserende
+            <input type="radio" name="options" id="Muserende" onChange={() => filterChanged('Muserende')} />Muserende
           </label>
         </div>
       </nav>
@@ -46,6 +46,7 @@ const NavComponent = ({ location }) => {
 
 NavComponent.propTypes = {
   location: PropTypes.object.isRequired,
+  filterChanged: PropTypes.func.isRequired,
 };
 
 export default NavComponent;
