@@ -19,7 +19,7 @@ const shouldBeHidden = (wineType, filterType) => {
              wineType.includes('Perl') ||
              wineType.includes('Cava') ||
              wineType.includes('Crem') ||
-             wineType.includes('Musser'));
+             wineType.includes('Mus'));
   }
   return !wineType.includes(filterType);
 };
@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
         winesInStock: state.winesInStock.map((wine) => {
           return {
             ...wine,
-            isHidden: !wine.info.type.includes(action.payload),
+            isHidden: shouldBeHidden(wine.info.type, action.payload),
           };
         }),
         wineArchive: state.wineArchive.map((wine) => {
