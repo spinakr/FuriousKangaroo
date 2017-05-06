@@ -13,7 +13,7 @@ const WineArchiveContainer = ({ wineArchive }) => {
 };
 
 const mapStateToProps = state => ({
-  wineArchive: state.wineArchive,
+  wineArchive: state.wines.archive,
 });
 
 WineArchiveContainer.propTypes = {

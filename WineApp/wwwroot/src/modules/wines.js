@@ -1,15 +1,16 @@
-import getWines from '../services/wineCoolerService';
+import { getWines } from '../services/wineCoolerService';
 
-export const GET_WINES_STARTED = 'score/GET_WINES_STARTED';
-export const GET_WINES_SUCCEED = 'score/GET_WINES_SUCCEED';
-export const GET_WINES_FAILED = 'score/GET_WINES_FAILED';
-export const FILTER_WINES = 'score/FILTER_WINES';
-export const RESET_FILTER = 'score/RESET_FILTER';
+const GET_WINES_STARTED = 'wines/GET_WINES_STARTED';
+const GET_WINES_SUCCEED = 'wines/GET_WINES_SUCCEED';
+const GET_WINES_FAILED = 'wines/GET_WINES_FAILED';
+const FILTER_WINES = 'wines/FILTER_WINES';
+const RESET_FILTER = 'wines/RESET_FILTER';
+export const ADD_WINE_TO_LIST = 'wines/ADD_WINE_TO_LIST';
 
 
 const initialState = {
-  winesInStock: [],
-  wineArchive: [],
+  inStock: [],
+  archive: [],
   isGettingWines: false,
 };
 
@@ -26,17 +27,16 @@ const shouldBeHidden = (wineType, filterType) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case RESET_FILTER: {
       return {
         ...state,
-        winesInStock: state.winesInStock.map((wine) => {
+        inStock: state.inStock.map((wine) => {
           return {
             ...wine,
             isHidden: false,
           };
         }),
-        wineArchive: state.wineArchive.map((wine) => {
+        archive: state.archive.map((wine) => {
           return {
             ...wine,
             isHidden: false,
@@ -48,13 +48,13 @@ export default (state = initialState, action) => {
     case FILTER_WINES: {
       return {
         ...state,
-        winesInStock: state.winesInStock.map((wine) => {
+        inStock: state.inStock.map((wine) => {
           return {
             ...wine,
             isHidden: shouldBeHidden(wine.info.type, action.payload),
           };
         }),
-        wineArchive: state.wineArchive.map((wine) => {
+        archive: state.archive.map((wine) => {
           return {
             ...wine,
             isHidden: shouldBeHidden(wine.info.type, action.payload),
@@ -74,15 +74,39 @@ export default (state = initialState, action) => {
       const wines = JSON.parse(action.payload.wines);
       return {
         ...state,
-        winesInStock: wines.inStock.map((wine) => { return { ...wine, isHidden: false }; }),
-        wineArchive: wines.archived.map((wine) => { return { ...wine, isHidden: false }; }),
+        inStock: wines.inStock.map((wine) => { return { ...wine, isHidden: false }; }),
+        archive: wines.archived.map((wine) => { return { ...wine, isHidden: false }; }),
       };
     }
 
     case GET_WINES_FAILED: {
       return {
         ...state,
-        isGettingScore: false,
+        isGettingwines: false,
+      };
+    }
+
+    case ADD_WINE_TO_LIST: {
+      const newWine = JSON.parse(action.payload.wine);
+      if (!state.inStock.some((wine) => {
+        return wine.info.vinmonopoletId === newWine.vinmonopoletId;
+      })) {
+        return {
+          ...state,
+          inStock: [...state.inStock, { info: newWine, ids: [newWine.rowKey], isHidden: false }],
+        };
+      }
+      return {
+        ...state,
+        inStock: state.inStock.map((wine) => {
+          if (wine.info.vinmonopoletId === newWine.vinmonopoletId) {
+            return {
+              ...wine,
+              ids: [...wine.ids, newWine.rowKey],
+            };
+          }
+          return wine;
+        }),
       };
     }
 

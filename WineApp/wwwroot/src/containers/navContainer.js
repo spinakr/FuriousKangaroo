@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import NavComponent from './navComponent';
-import { setNewFilter } from '../modules/winesModule';
+import NavComponent from '../components/navComponent';
+import { setNewFilter } from '../modules/wines';
 
 class NavContainer extends Component {
   render() {

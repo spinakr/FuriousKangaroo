@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using WineApp.Models;
 
@@ -13,7 +14,7 @@ namespace WineApp
         public Dictionary<string, string[]> WineRepo { get; set; }
         public VinmonopoletService()
         {
-            WineRepo = File.ReadAllLines(@"./produkter.csv").Skip(1)
+            WineRepo = File.ReadAllLines(@"./produkter.csv", Encoding.GetEncoding("ISO-8859-1")).Skip(1)
                 .Select(x => x.Split(';'))
                 .ToDictionary(x => x[1], x => x);
         }

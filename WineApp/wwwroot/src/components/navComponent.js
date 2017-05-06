@@ -7,11 +7,18 @@ const NavComponent = ({ location, filterChanged }) => {
   return (
     <div>
       <nav className="navbar stixy-top navbar-toggleable-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          className="navbar-toggler navbar-toggler-right"
+          type="button" data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon" />
         </button>
 
-        <h1 className="navbar-brand mb-0">Wine Cooler</h1>
+        <Link to="/" className="navbar-brand mb-0 nav-link">Wine Cooler</Link>
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">

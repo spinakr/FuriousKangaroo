@@ -48,7 +48,7 @@ namespace WineApi.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody]string vinmonopoletId)
+        public WineInfo Post([FromBody]string vinmonopoletId)
         {
             var wineInfo = _vinmonopoletService.GetInfo(vinmonopoletId);
             return _wineRepo.Insert(wineInfo);

@@ -13,7 +13,7 @@ const WinesInStockContainer = ({ winesInStock }) => {
 };
 
 const mapStateToProps = state => ({
-  winesInStock: state.winesInStock,
+  winesInStock: state.wines.inStock,
 });
 
 WinesInStockContainer.propTypes = {
