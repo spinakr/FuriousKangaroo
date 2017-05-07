@@ -21,23 +21,27 @@ namespace WineApp
 
         public WineInfo GetInfo(string vinmonopoletId)
         {
-            var wineInfo = WineRepo[vinmonopoletId];
-            return new WineInfo
+            if (WineRepo.TryGetValue(vinmonopoletId, out string[] wineInfo))
             {
-                RowKey = Guid.NewGuid().ToString(),
-                PartitionKey = "instock",
-                VinmonopoletId = vinmonopoletId,
-                BoughtDate = DateTime.Now.Date.ToString(),
-                Name = wineInfo[2],
-                Price = wineInfo[4],
-                Type = wineInfo[6],
-                Country = wineInfo[20],
-                Area = wineInfo[21],
-                Vintage = wineInfo[23],
-                Fruit = wineInfo[24],
-                Producer = wineInfo[30],
-                VinmonopoletUrl = wineInfo[35]
-            };
+                return new WineInfo
+                {
+                    RowKey = Guid.NewGuid().ToString(),
+                    PartitionKey = "instock",
+                    VinmonopoletId = vinmonopoletId,
+                    BoughtDate = DateTime.Now.Date.ToString(),
+                    Name = wineInfo[2],
+                    Price = wineInfo[4],
+                    Type = wineInfo[6],
+                    Country = wineInfo[20],
+                    Area = wineInfo[21],
+                    Vintage = wineInfo[23],
+                    Fruit = wineInfo[24],
+                    Producer = wineInfo[30],
+                    VinmonopoletUrl = wineInfo[35]
+                };
+            }
+            else return null;
+
         }
     }
 }

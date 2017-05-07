@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
     }
     case POST_WINE_FAILED: {
       return {
-        state,
+        ...state,
         postingWine: false,
         errorMessage: action.payload.errorMessage,
       };
@@ -62,6 +62,9 @@ export const addNewWine = () => (dispatch, getState) => {
     }, 5000);
   }).catch((errorMessage) => {
     dispatch({ type: POST_WINE_FAILED, payload: { errorMessage: errorMessage.message } });
+    setTimeout(() => {
+      dispatch({ type: RESET_FORM });
+    }, 5000);
   });
 };
 

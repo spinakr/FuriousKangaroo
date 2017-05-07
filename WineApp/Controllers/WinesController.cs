@@ -18,7 +18,7 @@ namespace WineApi.Controllers
         }
 
         [HttpGet]
-        public WineResponse Get()
+        public IActionResult Get()
         {
             var wines = _wineRepo.GetAllInStock();
             var inStock = wines.Where(w => w.PartitionKey == "instock");
@@ -40,18 +40,23 @@ namespace WineApi.Controllers
                 });
 
 
-            return new WineResponse
+            return Ok(new WineResponse
             {
                 InStock = inStockGrouped,
                 Archived = archiveGrouped
-            };
+            });
         }
 
         [HttpPost]
-        public WineInfo Post([FromBody]string vinmonopoletId)
+        public IActionResult Post([FromBody]string vinmonopoletId)
         {
             var wineInfo = _vinmonopoletService.GetInfo(vinmonopoletId);
-            return _wineRepo.Insert(wineInfo);
+            if (wineInfo != null)
+            {
+                return Ok(_wineRepo.Insert(wineInfo));
+            }
+            else
+                return BadRequest("Vinonopolet id not found in register");
         }
     }
 }

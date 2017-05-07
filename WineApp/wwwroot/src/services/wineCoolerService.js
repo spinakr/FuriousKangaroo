@@ -25,8 +25,10 @@ export const postWine = (vinmonopoletId) => {
       if (response.ok) {
         response.text().then(resolve);
       } else {
-        reject(`failed to commit changes: ${response.statusText}`);
+        throw new Error(`failed to commit changes: ${response.statusText}`);
       }
+    }).catch((error) => {
+      reject(error);
     });
   });
 };
